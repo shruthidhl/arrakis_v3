@@ -31,12 +31,12 @@ public interface SecurityRepository extends JpaRepository<Security, Integer>
             "WHERE s.id = t.security_id AND t.counter_party_id = c.id AND s.isin = :isin")
    List<String> searchForCounterParty(String isin);
 
-    @Query(nativeQuery = true, value = " SELECT DISTINCT s.*, b.book_name FROM security s " +
+    @Query(nativeQuery = true, value = " SELECT DISTINCT s.* FROM security s " +
             "JOIN trades t ON s.id = t.security_id " +
             "JOIN books b ON t.book_id = b.id " +
             "JOIN book_user bu ON b.id = bu.book_id " +
             "JOIN users u ON bu.user_id = u.id " +
-            "WHERE u.email = :email AND u.password = :password")
-    List<String> searchByUserEmailAndPassword(String email, String password);
+            "WHERE u.email = :email AND b.book_name = :bookName")
+    List<Security> searchByUserEmailAndBookName(String email, String bookName);
 
 }

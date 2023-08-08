@@ -7,7 +7,6 @@ import filterFactory, { textFilter } from 'react-bootstrap-table2-filter';
 
 
 const BondTable2 = ({ data }) => {
-
   const columns = [{
     dataField: "isin",
     text: "ISIN",
